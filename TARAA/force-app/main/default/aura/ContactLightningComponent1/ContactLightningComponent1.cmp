@@ -1,0 +1,34 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller = "ContactListController1">
+	    <!-- Handler to call function when page is loaded initially -->
+    <aura:handler name="init" action="{!c.getContactsList}" value="{!this}" />
+    <!-- List of contacts stored in attribute -->
+    <aura:attribute name="contactList" type="List" />
+    
+   <div class="slds"> 
+
+    <table class="slds-table slds-table- -bordered slds-table- -striped">
+        <thead>
+            <tr>
+                <th scope="col"><span class="slds-truncate">Contact Name</span></th>
+                <th scope="col"><span class="slds-truncate">Contact Id</span></th>
+                <th scope="col"><span class="slds-truncate">Contact Phone</span></th>
+                <th scope="col"><span class="slds-truncate">Contact Email</span></th>
+                
+            </tr>
+        </thead>
+        <tbody>
+             <aura:iteration items="{!v.contactList}" var="Contact">
+                <tr>
+                    <td>{!Contact.Name}</td>
+                    <td>{!Contact.Id}</td>
+                    <td>{!Contact.Phone}</td>
+                    <td>{!Contact.Email}</td>
+                    
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+        </div>
+   
+
+</aura:component>

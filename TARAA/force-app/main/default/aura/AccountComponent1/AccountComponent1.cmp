@@ -1,0 +1,58 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" controller = "AccountDetailsController" access="global" >
+     <!-- Handler to call function when page is loaded initially -->
+    <aura:handler name="init" action="{!c.getAccountData}" value="{!this}" />
+    <!-- List of contacts stored in attribute -->
+    <aura:attribute name="accountList" type="list" />
+     <div class="slds"> 
+
+    <table class="slds-table slds-table- -bordered slds-table- -striped">
+        <thead>
+            <tr>
+                <th scope="col"><span class="slds-truncate">Account Name</span></th>
+                <th scope="col"><span class="slds-truncate">Account Industry</span></th>
+                <th scope="col"><span class="slds-truncate">Account Phone</span></th>
+                <th scope="col"><span class="slds-truncate">Account Rating</span></th>
+                <th scope="col"><span class="slds-truncate">Account Active__c</span></th>
+            </tr>
+        </thead>
+        <tbody>
+             <aura:iteration items="{!v.accountList}" var="account">
+                <tr>
+                    <td>{!account.Name}</td>
+                    <td>{!account.Industry}</td>
+                    <td>{!account.Phone}</td>
+                    <td>{!account.Rating}</td>
+                    <td>{!account.Active__c}</td>
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+        </div>
+    <!-- Aura iteration to iterate list, similar to apex:repeat -->
+    <aura:iteration items="{!v.accountList}" var="account">
+        <!-- recordViewForm to view the record -->
+        <lightning:recordViewForm recordId="{!account.Id}" objectApiName="account">
+            <div class="slds-box slds-theme_default">
+                <!-- outputfield used to output the record field data inside recordViewForm -->
+                <lightning:outputField fieldName="Name" value = "{!account.Name}" />
+                <lightning:outputField fieldName="Industry" value = "{!account.Industry}" />
+                <lightning:outputField fieldName="Phone" value = "{!account.Phone}" />
+                <lightning:outputField fieldName="Rating" value = "{!account.Rating}" />
+                <lightning:outputField fieldName="Active__c" value = "{!account.Active__c}" />
+                 
+            </div>
+        		<tr>
+                    <td>{!account.Name}</td>
+                    <td>{!account.Industry}</td>
+                    <td>{!account.Phone}</td>
+                    <td>{!account.Rating}</td>
+                    <td>{!account.Active__c}</td>
+                </tr>
+
+        </lightning:recordViewForm>
+        <!-- Line break between two records -->
+        <br />
+    </aura:iteration>
+
+    
+</aura:component>
