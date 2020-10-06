@@ -1,8 +1,8 @@
 public class AccountDetailsController {
-
-   //Testing code1 stash1    
+   //Testing1 code1 stash     
         //Stash1 check1
-
+   //Testing2 code2 stash     
+        //Stash2 check2
     @AuraEnabled
     public static List<account> getaccountDetails() {
      
