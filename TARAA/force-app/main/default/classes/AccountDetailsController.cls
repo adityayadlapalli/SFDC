@@ -1,7 +1,6 @@
 public class AccountDetailsController {
 
    //Tseting code stash     
-=======
         //Stash2 check
 
     @AuraEnabled
