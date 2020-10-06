@@ -1,8 +1,12 @@
 public class AccountDetailsController {
+<<<<<<< Updated upstream
 
    //Testing code stash     
         //Stash2 check
 
+=======
+        //Stash2 check
+>>>>>>> Stashed changes
     @AuraEnabled
     public static List<account> getaccountDetails() {
      
