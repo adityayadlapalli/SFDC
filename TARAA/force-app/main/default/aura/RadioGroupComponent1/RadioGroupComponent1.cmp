@@ -1,0 +1,17 @@
+<aura:component>
+    <aura:attribute name="options" type="List" default="[
+    {'label': 'Initial Rate Request', 'value': 'option1'},
+    {'label': 'Modification Rate Request', 'value': 'option2'},
+    {'label': 'CCF Rate Request', 'value': 'option2'}                                                   
+    ]"/>
+    <aura:attribute name="value" type="String" default="option1"/>
+    <lightning:radioGroup
+        aura:id="mygroup"
+        name="radioButtonGroup"
+        label="Rate Request"
+        options="{! v.options }"
+        value="{! v.value }"
+        onchange="{! c.handleChange }"
+        required="true" />
+    <lightning:button variant="brand" label="Submit" title="Brand action" onclick="{! c.submit }" />
+</aura:component>
