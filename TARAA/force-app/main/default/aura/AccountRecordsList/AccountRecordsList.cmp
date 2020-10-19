@@ -1,0 +1,84 @@
+<aura:component>
+ <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+
+ <!--Declare Attributes-->
+ <aura:attribute name="accountList" type="list" /> 
+ <aura:attribute name="isSelectAll" type="boolean" default="false"/>
+
+ <div class="slds-m-around_xx-large">
+ <h1 class="slds-text-heading--medium">Accounts</h1>
+ <br/>
+ <!--Account List Table-->
+ <table class="slds-table slds-table--bordered slds-table--cell-buffer" role="grid"> 
+ <thead> 
+ <tr class="slds-text-title--caps">
+
+ <th> 
+ <label class="slds-checkbox">
+ <ui:inputCheckbox value="{!v.isSelectAll}" change="{!c.handleSelectAllAccounts}" aura:id="selectAll"/>
+ <span class="slds-checkbox--faux" />
+ <span class="slds-form-element__label"></span>
+ </label>
+ </th>
+
+ <th scope="col">
+    <div class="slds-truncate" title="ID">ID</div>
+ </th>
+ <th scope="col">
+    <div class="slds-truncate" title="Name">Name</div>
+ </th>
+
+ <th scope="col">
+    <div class="slds-truncate" title="Phone">Phone</div>
+ </th>
+
+ <th scope="col">
+    <div class="slds-truncate" title="Active__c">Active</div>
+ </th>
+
+ <th scope="col">
+    <div class="slds-truncate" title="Industry">Industry</div>
+ </th>
+
+ </tr>
+ </thead>
+
+ <tbody> 
+ <aura:iteration items="{!v.accountList}" var="acc">
+ <tr>
+
+ <th>
+ <label class="slds-checkbox">
+ <ui:inputCheckbox aura:id="checkAccount" value="" text="{!acc.Id}"/>
+ <span class="slds-checkbox--faux" />
+ <span class="slds-form-element__label"></span>
+ </label>
+ </th>
+
+ <th scope="row">
+    <div class="slds-truncate" title="{!acc.Id}">{!acc.Id}</div>
+ </th>
+
+ <th scope="row">
+    <div class="slds-truncate" title="{!acc.Name}">{!acc.Name}</div>
+ </th>
+
+ <th scope="row">
+    <div class="slds-truncate" title="{!acc.Phone}">{!acc.Phone}</div>
+ </th>
+
+ <th scope="row">
+    <div class="slds-truncate" title="{!acc.Active__c}">{!acc.Active__c}</div>
+</th>
+
+<th scope="row">
+    <div class="slds-truncate" title="{!acc.Industry}">{!acc.Industry}</div>
+</th>
+
+
+ </tr>
+ </aura:iteration>
+ </tbody>
+ </table>
+ </div>
+</aura:component>	
