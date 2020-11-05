@@ -1,0 +1,136 @@
+<template>
+    <div class="slds-grid">
+        <div class="slds-size_4-of-12">
+            <lightning-card title="Quick Search" icon-name="standard:person_account">
+                <div if:true={errorMsg} style="margin-left: 3%;">
+                    <p style="color: red;white-space: pre-wrap;"><label>{errorMsg}</label></p>
+                </div>
+
+                <lightning-layout>
+                    <template if:true={isRendered}>
+                        <lightning-layout-item flexibility="auto" padding="around-small">
+                            <div class="slds-form-element">
+                                <div class="slds-form-element__control">
+                                    <lightning-input type="text" 
+                                    label="First Name" 
+                                    name="firstName"
+                                    value={filterObject.firstName}
+                                    onblur={handleChange} ></lightning-input>
+                                </div>
+                            </div>
+                            <div class="slds-form-element">
+                                <div class="slds-form-element__control">
+                                    <lightning-input type="text" 
+                                    label="Last Name" 
+                                    name="lastName"
+                                    value={filterObject.lastName}
+                                    onblur={handleChange} ></lightning-input>
+                                </div>
+                            </div>
+                            <div class="slds-form-element">
+                                <div class="slds-form-element__control">
+                                    <lightning-input type="date" 
+                                    label="Date of Birth" date-style="short"
+                                    name="birthDate"
+                                    value={filterObject.birthDate}
+                                    onblur={handleChange} ></lightning-input>
+                                </div>
+                            </div> 
+                            <div class="slds-form-element">
+                                <div class="slds-form-element__control">
+                                    <lightning-input type="numeric" 
+                                    label="Phone #" 
+                                    name="phoneNumber"
+                                    maxlength="10"
+                                    value={filterObject.phoneNumber}
+                                    pattern="^[0-9]{10}$"
+                                    message-when-pattern-mismatch="enter 10 digit number"
+                                    onblur={handleChange} ></lightning-input>
+                                </div>
+                            </div> 
+                            <div class="slds-form-element">
+                                <div class="slds-form-element__control">
+                                    <lightning-combobox
+                                    name="state"
+                                    label="State"
+                                    placeholder="Choose State"
+                                    value={filterObject.state}
+                                    onchange={handleChange}
+                                    options={statePicklistOptions}>
+                                    </lightning-combobox>
+                                </div>
+                            </div> 
+                            <div class="slds-form-element">
+                                <div class="slds-form-element__control">
+                                    <lightning-input type="text" 
+                                    label="UHC Member #" 
+                                    maxlength="10"
+                                    name="uhcMemberNumber"
+                                    pattern="^[0/1/3]{1}[0-9]{8}[1/2]{1}$"
+                                    message-when-pattern-mismatch="Member number should start with 0/1/3 and end with 1/2"
+                                    value={filterObject.uhcMemberNumber}
+                                    onblur={handleChange} ></lightning-input>
+                                </div>
+                            </div>
+                            <div class="slds-form-element">
+                                <div class="slds-form-element__control">
+                                    <lightning-input type="text" 
+                                    label="Zip Code" 
+                                    name="zipCode"
+                                    min-length="4"
+                                    value={filterObject.zipCode}
+                                    onblur={handleChange} ></lightning-input>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="">
+                                <div class="slds-clearfix">
+                                    <div class="slds-float_left">
+                                        <lightning-button
+                                        label="Search"
+                                        variant="brand"
+                                        onclick={handleSearch}
+                                        ></lightning-button>
+                                    </div>
+                                    <div class="slds-float_right">
+                                        <lightning-button
+                                        label="Reset"
+                                        variant="brand"
+                                        onclick={handleReset}
+                                        ></lightning-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+            </lightning-card>
+        </div>
+        <div class="slds-size_8-of-12">
+            <lightning-card title="Quick Search List" icon-name="standard:person_account">
+                <template if:true={contactList}>
+                    <lightning-datatable data={contactList} 
+                    columns={columns} 
+                    key-field="id"
+                    hide-checkbox-column="true"></lightning-datatable>
+                    <div class="slds-clearfix slds-var-p-around_medium">
+                        <div class="slds-float_left">
+                            <lightning-button
+                                label="Previous"
+                                variant="brand"
+                                onclick={handlePrevious}
+                            ></lightning-button>
+                        </div>
+                        <div class="slds-float_right">
+                              <lightning-button
+                              label="Next"
+                              variant="brand"
+                              onclick={handleNext}
+                            ></lightning-button>
+                        </div>
+                    </div>
+                </template>
+            </lightning-card>
+        </div>
+    </div>
+</template>
